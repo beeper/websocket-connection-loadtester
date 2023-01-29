@@ -10,10 +10,11 @@ COUNT = int(environ.get("COUNT", 100))
 SERVER_IP = environ["SERVER_IP"]
 SERVER_PORT = environ.get("SERVER_PORT", 8000)
 
-SOCKS_IP = environ.get("SOCKS_IP")
-SOCKS_USER = environ.get("SOCKS_USER", "proxy")
-SOCKS_PASSWORD = environ.get("SOCKS_PASSWORD")
-SOCKS_PORT = environ.get("SOCKS_PORT", 9000)
+PROXY_TYPE = environ.get("PROXY_TYPE", "socks5")
+PROXY_IP = environ.get("PROXY_IP")
+PROXY_USER = environ.get("PROXY_USER", "proxy")
+PROXY_PASSWORD = environ.get("PROXY_PASSWORD")
+PROXY_PORT = environ.get("PROXY_PORT", 8000)
 
 counter = []
 
@@ -24,10 +25,10 @@ def test_websocket(i):
     ws = websocket.WebSocket()
     ws.connect(
         f"ws://{SERVER_IP}:{SERVER_PORT}",
-        http_proxy_host=SOCKS_IP,
-        http_proxy_port=SOCKS_PORT,
-        proxy_type="socks5",
-        http_proxy_auth=(SOCKS_USER, SOCKS_PASSWORD),
+        http_proxy_host=PROXY_IP,
+        http_proxy_port=PROXY_PORT,
+        proxy_type=PROXY_TYPE,
+        http_proxy_auth=(PROXY_USER, PROXY_PASSWORD),
         timeout=5,
     )
     print(f"Connected server #{i}")

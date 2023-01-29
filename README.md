@@ -18,5 +18,5 @@ pip install websocket-client
 SERVER_IP=1.2.3.4 COUNT=1000 python3 client.py
 
 # With SOCKS5 proxy
-SERVER_IP=1.2.3.4 SOCKS_IP=5.6.7.8 SOCKS_USER=user SOCKS_PASSWORD=password python3 client.py
+SERVER_IP=1.2.3.4 PROXY_IP=5.6.7.8 PROXY_USER=user PROXY_PASSWORD=password python3 client.py
 ```
