@@ -5,7 +5,7 @@ from time import sleep, time
 
 import websocket
 
-COUNT = environ.get("COUNT", 100)
+COUNT = int(environ.get("COUNT", 100))
 
 SERVER_IP = environ["SERVER_IP"]
 SERVER_PORT = environ.get("SERVER_PORT", 8000)
