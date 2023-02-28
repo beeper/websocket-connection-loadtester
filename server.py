@@ -4,8 +4,12 @@
 
 import asyncio
 
+from os import environ
+
 import websockets
 
+
+SERVER_PORT = environ.get("SERVER_PORT", 8000)
 
 async def echo(websocket):
     try:
@@ -17,7 +21,7 @@ async def echo(websocket):
 
 
 async def main():
-    async with websockets.serve(echo, "0.0.0.0", 8000):
+    async with websockets.serve(echo, "0.0.0.0", SERVER_PORT):
         await asyncio.Future()
 
 
