@@ -23,16 +23,20 @@ def test_websocket(i):
     sleep(i * 0.1)
 
     ws = websocket.WebSocket()
-    ws.connect(
-        f"ws://{SERVER_IP}:{SERVER_PORT}",
-        http_proxy_host=PROXY_IP,
-        http_proxy_port=PROXY_PORT,
-        proxy_type=PROXY_TYPE,
-        http_proxy_auth=(PROXY_USER, PROXY_PASSWORD),
-        timeout=5,
-    )
-    print(f"Connected server #{i}")
-    counter.append(True)
+    try:
+        ws.connect(
+            f"ws://{SERVER_IP}:{SERVER_PORT}",
+            http_proxy_host=PROXY_IP,
+            http_proxy_port=PROXY_PORT,
+            proxy_type=PROXY_TYPE,
+            http_proxy_auth=(PROXY_USER, PROXY_PASSWORD),
+            timeout=5,
+        )
+        print(f"Connected server #{i}")
+        counter.append(True)
+    except Exception as e:
+        print(e)
+        return
 
     start = time()
 
