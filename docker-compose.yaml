@@ -6,21 +6,25 @@ services:
     environment:
       SERVER_PORT: "8000"
     command: ["/usr/bin/python3", "/server.py"]
+    network_mode: "host"
   s1:
     image: server
     build: .
     environment:
       SERVER_PORT: "8001"
     command: ["/usr/bin/python3", "/server.py"]
+    network_mode: "host"
   s2:
     image: server
     build: .
     environment:
       SERVER_PORT: "8002"
     command: ["/usr/bin/python3", "/server.py"]
+    network_mode: "host"
   s3:
     image: server
     build: .
     environment:
       SERVER_PORT: "8003"
     command: ["/usr/bin/python3", "/server.py"]
+    network_mode: "host"
