@@ -12,7 +12,7 @@ python3 server.py
 ## Run Client
 
 ```sh
-pip install websocket-client
+pip install websocket-client prometheus-client
 
 # Basic no proxy
 SERVER_IP=1.2.3.4 COUNT=1000 python3 client.py
