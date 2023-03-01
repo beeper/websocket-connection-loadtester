@@ -25,6 +25,7 @@ disconnects = Counter("disconnects", "Number of disconnections")
 def test_websocket(i):
     while True:
         sleep(i * 0.1)
+        print(f"Connecting server #{i} (reconnect: {RECONNECT})")
 
         ws = websocket.WebSocket()
         try:
@@ -71,6 +72,7 @@ def test_websocket(i):
             if not RECONNECT:
                 return
 
+        print(f"Reconnecting server #{i} after wait")
 
 start_http_server(8000)
 executor = ThreadPoolExecutor(max_workers=COUNT)
