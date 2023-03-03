@@ -14,7 +14,7 @@ COUNT = int(environ.get("COUNT", 100))
 RECONNECT = bool(int(environ.get("RECONNECT", 0)))
 
 SERVER_IP = environ["SERVER_IP"]
-SERVER_PORT = environ.get("SERVER_PORT", 8000)
+SERVER_PORT = int(environ.get("SERVER_PORT", 8000))
 
 PROXY_URL = environ.get("PROXY_URL")
 
