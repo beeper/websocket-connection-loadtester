@@ -12,11 +12,11 @@ python3 server.py
 ## Run Client
 
 ```sh
-pip install websocket-client prometheus-client
+pip install websockets python-socks[asyncio] prometheus-client
 
 # Basic no proxy
 SERVER_IP=1.2.3.4 COUNT=1000 python3 client.py
 
 # With SOCKS5 proxy
-SERVER_IP=1.2.3.4 PROXY_IP=5.6.7.8 PROXY_USER=user PROXY_PASSWORD=password python3 client.py
+SERVER_IP=1.2.3.4 PROXY_URL=socks5://user:password@5.6.7.8 python3 client.py
 ```
