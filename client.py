@@ -1,12 +1,12 @@
-from os import environ
-from time import time
-from random import randint
-from prometheus_client import start_http_server, Counter, Gauge
-from python_socks.async_.asyncio import Proxy
-
 import asyncio
-import websockets
 import signal
+from os import environ
+from random import randint
+from time import time
+
+import websockets
+from prometheus_client import Counter, Gauge, start_http_server
+from python_socks.async_.asyncio import Proxy
 
 signal.signal(signal.SIGINT, signal.SIG_DFL)
 
@@ -22,6 +22,7 @@ Gauge("wanted_connections", "Target number of connections").set(COUNT)
 counter = Gauge("connections", "Current number of connection")
 disconnects = Counter("disconnects", "Number of disconnections")
 
+
 async def main():
     proxy = Proxy.from_url(PROXY_URL) if PROXY_URL is not None else None
 
@@ -34,7 +35,9 @@ async def main():
             try:
                 sock = None
                 if proxy is not None:
-                    sock = await proxy.connect(dest_host=SERVER_IP, dest_port=SERVER_PORT, timeout=9)
+                    sock = await proxy.connect(
+                        dest_host=SERVER_IP, dest_port=SERVER_PORT, timeout=9
+                    )
 
                 ws = await websockets.connect(
                     f"ws://{SERVER_IP}:{SERVER_PORT}",
@@ -61,7 +64,9 @@ async def main():
                 j = 0
                 while True:
                     sleep_time = randint(1, 10)
-                    await ws.send(f"Hello, server #{i} (ping {j}), see you in {sleep_time}s")
+                    await ws.send(
+                        f"Hello, server #{i} (ping {j}), see you in {sleep_time}s"
+                    )
                     await ws.recv()
                     await asyncio.sleep(sleep_time)
                     j += 1
@@ -93,7 +98,10 @@ async def main():
             print("Break & failed")
             break
 
-        print(f"Currently {conns} connections open, {disconnects._value.get()} disconnects")
+        print(
+            f"Currently {conns} connections open, {disconnects._value.get()} disconnects"
+        )
         await asyncio.sleep(1)
+
 
 asyncio.run(main())
