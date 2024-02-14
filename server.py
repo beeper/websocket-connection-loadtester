@@ -12,6 +12,7 @@ import websockets
 SERVER_PORT = environ.get("SERVER_PORT", 8000)
 
 async def echo(websocket):
+    print(f"Connected websocket from: {websocket.remote_address}")
     try:
         async for message in websocket:
             print(f"Got message: {message}")
