@@ -41,7 +41,7 @@ async def main():
                     sock=sock,
                     ping_interval=10,
                     ping_timeout=30,
-                    open_timeout=9,
+                    open_timeout=30,
                 )
                 print(f"Connected server #{i}")
                 counter.inc()
